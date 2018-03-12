@@ -5,7 +5,6 @@ import { shallow } from 'enzyme';
 describe('App', () => {
   it('should display patient first and last name', () => {
     const wrapper = shallow(<App />);
-    expect(wrapper.find("[data-test='first-name']").text()).toEqual("JOHN");
-    expect(wrapper.find("[data-test='last-name']").text()).toEqual("APPLESEED");
+    expect(wrapper.find("[data-test='full-name']").text()).toEqual("APPLESEED III, JOHN A");
   });
 });
