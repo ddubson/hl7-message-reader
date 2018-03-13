@@ -1,17 +1,14 @@
-import React, { PureComponent } from "react";
-import {
-  Col, ControlLabel, FormGroup,
-  FormControl, Grid, Label, Panel
-} from "react-bootstrap";
-import HL7Reader from "../hl7/HL7Reader";
-import { sampleHL7v23 } from "../hl7/hl7_samples";
+import React, { PureComponent } from 'react';
+import { Col, Grid, Panel } from 'react-bootstrap';
+import HL7Reader from '../hl7/HL7Reader';
+import { sampleHL7v23 } from '../hl7/hl7_samples';
+import Field from './Field';
 
 export default class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.reader = new HL7Reader();
-    this.state = this.reader.read(sampleHL7v23);
+    this.state = HL7Reader.read(sampleHL7v23);
   }
 
   render() {
@@ -23,31 +20,20 @@ export default class App extends PureComponent {
           <Panel>
             <Panel.Heading>Event Information</Panel.Heading>
             <Panel.Body>
-              <FormGroup>
-                <ControlLabel>Event Code</ControlLabel>
-                <FormControl.Static>
-                  <span data-test="event-code">
-                    {event.code}
-                  </span>
-                </FormControl.Static>
-              </FormGroup>
+              <Field title="Event Code" value={event.code} />
             </Panel.Body>
           </Panel>
           <Panel>
             <Panel.Heading>Patient Information</Panel.Heading>
             <Panel.Body>
-              <FormGroup>
-                <ControlLabel>Patient Name</ControlLabel>
-                <FormControl.Static>
-                  <span data-test="full-name">
-                  {`${patient.lastName} ${patient.suffix}, ${patient.firstName} ${patient.middleInitialOrName}`}
-                  </span>
-                </FormControl.Static>
-              </FormGroup>
+              <Field
+                title="Patient Name"
+                value={`${patient.lastName} ${patient.suffix}, ${patient.firstName} ${patient.middleInitialOrName}`}
+              />
             </Panel.Body>
           </Panel>
         </Col>
       </Grid>
-    )
+    );
   }
 }

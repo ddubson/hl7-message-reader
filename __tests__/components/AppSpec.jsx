@@ -1,6 +1,6 @@
 import React from 'react';
-import App from '../../src/components/App';
 import { shallow } from 'enzyme';
+import App from '../../src/components/App';
 
 describe('App', () => {
   let wrapper;
@@ -11,13 +11,13 @@ describe('App', () => {
 
   describe('Event Information', () => {
     it('should display event code', () => {
-      expect(wrapper.find("[data-test='event-code']").text()).toEqual("A01");
+      expect(wrapper.find("Field[title='Event Code']").prop('value')).toEqual('A01');
     });
   });
 
   describe('Patient Information', () => {
     it('should display patient first and last name', () => {
-      expect(wrapper.find("[data-test='full-name']").text()).toEqual("APPLESEED III, JOHN A");
+      expect(wrapper.find("Field[title='Patient Name']").prop('value')).toEqual('APPLESEED III, JOHN A');
     });
   });
 });
