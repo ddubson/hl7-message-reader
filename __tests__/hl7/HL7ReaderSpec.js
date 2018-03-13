@@ -11,6 +11,10 @@ describe("HL7Reader", () => {
         parsedData = reader.read(sampleHL7v23);
       });
 
+      it('should parse event code', () => {
+        expect(parsedData.event.code).toEqual("A01");
+      });
+
       it("should parse first name", () => {
         expect(parsedData.patient.firstName).toEqual("JOHN");
       });

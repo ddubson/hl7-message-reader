@@ -5,7 +5,11 @@ export default class HL7Reader {
   read(hl7) {
     const segments = hl7.split("\n");
 
-    const pidSegment = segments.find(s => (s.startsWith("PID")));
+    const evnSegment = segments.find(s => s.startsWith("EVN"));
+    const evnSegmentFields = evnSegment.split(segmentSeparator);
+    const eventCode = evnSegmentFields[1];
+
+    const pidSegment = segments.find(s => s.startsWith("PID"));
     const patientName = pidSegment.split(segmentSeparator)[5];
     const patientNameFields = patientName.split(fieldSeparator);
 
@@ -15,6 +19,9 @@ export default class HL7Reader {
     const suffix = patientNameFields[3];
 
     return {
+      event: {
+        code: eventCode
+      },
       patient: {
         firstName: patientFirstName,
         lastName: patientLastName,
