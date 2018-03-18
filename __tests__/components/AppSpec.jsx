@@ -45,5 +45,10 @@ describe('App', () => {
       expect(wrapper.find("Field[title='Home Phone Number']").prop('value'))
         .toEqual('(414)379-1212');
     });
+
+    it('should display business phone number', () => {
+      expect(wrapper.find("Field[title='Business Phone Number']").prop('value'))
+        .toEqual('(414)271-3434');
+    });
   });
 });

@@ -30,6 +30,7 @@ const readPIDSegment = (segment) => {
       zipCode: addressFields[4],
     },
     homePhoneNumber: segmentFields[13],
+    businessPhoneNumber: segmentFields[14],
   };
 };
 

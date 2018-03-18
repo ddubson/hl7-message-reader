@@ -59,6 +59,10 @@ export default class App extends PureComponent {
                     title="Home Phone Number"
                     value={patient.homePhoneNumber}
                   />
+                  <Field
+                    title="Business Phone Number"
+                    value={patient.businessPhoneNumber}
+                  />
                 </Panel.Body>
               </Panel>
             </Col>

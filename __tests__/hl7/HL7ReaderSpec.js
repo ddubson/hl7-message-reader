@@ -60,6 +60,10 @@ describe('HL7Reader', () => {
         it('should parse patient home phone number', () => {
           expect(parsedData.patient.homePhoneNumber).toEqual('(414)379-1212');
         });
+
+        it('should parse patient business phone number', () => {
+          expect(parsedData.patient.businessPhoneNumber).toEqual('(414)271-3434');
+        });
       });
     });
   });
