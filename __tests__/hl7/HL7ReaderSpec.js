@@ -10,24 +10,36 @@ describe('HL7Reader', () => {
         parsedData = HL7Reader.read(sampleHL7v23);
       });
 
-      it('should parse event code', () => {
-        expect(parsedData.event.code).toEqual('A01');
+      describe('EVN segment', () => {
+        it('should parse event code', () => {
+          expect(parsedData.event.code).toEqual('A01');
+        });
+
+        it('should parse recorded date time', () => {
+          expect(parsedData.event.recordedDateTime).toEqual('201301011223');
+        });
       });
 
-      it('should parse first name', () => {
-        expect(parsedData.patient.firstName).toEqual('JOHN');
-      });
+      describe('PID segment', () => {
+        it('should parse first name', () => {
+          expect(parsedData.patient.firstName).toEqual('JOHN');
+        });
 
-      it('should parse last name', () => {
-        expect(parsedData.patient.lastName).toEqual('APPLESEED');
-      });
+        it('should parse last name', () => {
+          expect(parsedData.patient.lastName).toEqual('APPLESEED');
+        });
 
-      it('should parse middle name', () => {
-        expect(parsedData.patient.middleInitialOrName).toEqual('A');
-      });
+        it('should parse middle name', () => {
+          expect(parsedData.patient.middleInitialOrName).toEqual('A');
+        });
 
-      it('should parse patient suffix', () => {
-        expect(parsedData.patient.suffix).toEqual('III');
+        it('should parse patient suffix', () => {
+          expect(parsedData.patient.suffix).toEqual('III');
+        });
+
+        it('should parse patient sex', () => {
+          expect(parsedData.patient.sex).toEqual('M');
+        });
       });
     });
   });

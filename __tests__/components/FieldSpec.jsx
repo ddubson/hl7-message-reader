@@ -14,10 +14,12 @@ describe('Field', () => {
   });
 
   it('should display the supplied title', () => {
-    expect(wrapper.find('ControlLabel').children().text()).toEqual(props.title);
+    expect(wrapper.find('Col').at(0).children().text())
+      .toEqual(props.title);
   });
 
   it('should display the supplied content', () => {
-    expect(wrapper.find('FormControlStatic').children().text()).toEqual(props.value);
+    expect(wrapper.find('Col').at(1).children().text())
+      .toEqual(props.value);
   });
 });

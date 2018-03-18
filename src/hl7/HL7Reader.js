@@ -1,33 +1,40 @@
-const segmentSeparator = '|';
-const fieldSeparator = '^';
+const segmentSeparator = '\n';
+const fieldSeparator = '|';
+const intraFieldSeparator = '^';
+
+const readEVNSegment = (segment) => {
+  const evnSegmentFields = segment.split(fieldSeparator);
+  return {
+    code: evnSegmentFields[1],
+    recordedDateTime: evnSegmentFields[2],
+  };
+};
+
+const readPIDSegment = (segment) => {
+  const segmentFields = segment.split(fieldSeparator);
+  const patientName = segmentFields[5];
+  const patientNameFields = patientName.split(intraFieldSeparator);
+
+  return {
+    firstName: patientNameFields[1],
+    lastName: patientNameFields[0],
+    middleInitialOrName: patientNameFields[2],
+    suffix: patientNameFields[3],
+    sex: segmentFields[8],
+  };
+};
 
 export default class HL7Reader {
   static read(hl7) {
-    const segments = hl7.split('\n');
+    const segments = hl7.split(segmentSeparator);
 
     const evnSegment = segments.find(s => s.startsWith('EVN'));
-    const evnSegmentFields = evnSegment.split(segmentSeparator);
-    const eventCode = evnSegmentFields[1];
-
     const pidSegment = segments.find(s => s.startsWith('PID'));
-    const patientName = pidSegment.split(segmentSeparator)[5];
-    const patientNameFields = patientName.split(fieldSeparator);
-
-    const patientLastName = patientNameFields[0];
-    const patientFirstName = patientNameFields[1];
-    const patientMiddleInitialOrName = patientNameFields[2];
-    const suffix = patientNameFields[3];
 
     return {
-      event: {
-        code: eventCode,
-      },
-      patient: {
-        firstName: patientFirstName,
-        lastName: patientLastName,
-        middleInitialOrName: patientMiddleInitialOrName,
-        suffix,
-      },
+      event: readEVNSegment(evnSegment),
+      patient: readPIDSegment(pidSegment),
     };
   }
 }
+
