@@ -3,6 +3,11 @@ import { Col, Grid, Panel, Row } from 'react-bootstrap';
 import HL7Reader from '../hl7/HL7Reader';
 import { sampleHL7v23 } from '../hl7/hl7_samples';
 import Field from './Field';
+import { Race } from '../hl7/HL7Codes';
+
+const formatName = patient => `${patient.lastName} ${patient.suffix}, ${patient.firstName} ${patient.middleInitialOrName}`;
+
+const formatAddress = addr => `${addr.streetAddress}, ${addr.city}, ${addr.state}, ${addr.zipCode}`;
 
 export default class App extends PureComponent {
   constructor(props) {
@@ -41,9 +46,19 @@ export default class App extends PureComponent {
                 <Panel.Body>
                   <Field
                     title="Patient Name"
-                    value={`${patient.lastName} ${patient.suffix}, ${patient.firstName} ${patient.middleInitialOrName}`}
+                    value={formatName(patient)}
                   />
                   <Field title="Patient Sex" value={patient.sex} />
+                  <Field title="Date of Birth" value={patient.dateOfBirth} />
+                  <Field title="Race" value={`${Race[patient.race]} (${patient.race})`} />
+                  <Field
+                    title="Patient Address"
+                    value={formatAddress(patient.address)}
+                  />
+                  <Field
+                    title="Home Phone Number"
+                    value={patient.homePhoneNumber}
+                  />
                 </Panel.Body>
               </Panel>
             </Col>

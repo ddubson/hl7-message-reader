@@ -12,15 +12,24 @@ const readEVNSegment = (segment) => {
 
 const readPIDSegment = (segment) => {
   const segmentFields = segment.split(fieldSeparator);
-  const patientName = segmentFields[5];
-  const patientNameFields = patientName.split(intraFieldSeparator);
+  const patientNameFields = segmentFields[5].split(intraFieldSeparator);
+  const addressFields = segmentFields[11].split(intraFieldSeparator);
 
   return {
-    firstName: patientNameFields[1],
     lastName: patientNameFields[0],
+    firstName: patientNameFields[1],
     middleInitialOrName: patientNameFields[2],
     suffix: patientNameFields[3],
+    dateOfBirth: segmentFields[7],
     sex: segmentFields[8],
+    race: segmentFields[10],
+    address: {
+      streetAddress: addressFields[0],
+      city: addressFields[2],
+      state: addressFields[3],
+      zipCode: addressFields[4],
+    },
+    homePhoneNumber: segmentFields[13],
   };
 };
 
