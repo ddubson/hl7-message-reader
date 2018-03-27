@@ -3,7 +3,7 @@ import { Col, Grid, Panel, Row } from 'react-bootstrap';
 import HL7Reader from '../hl7/HL7Reader';
 import { sampleHL7v23 } from '../hl7/hl7_samples';
 import Field from './Field';
-import { Race } from '../hl7/HL7Codes';
+import { MaritalStatus, Race } from '../hl7/HL7Codes';
 
 const formatName = patient => `${patient.lastName} ${patient.suffix}, ${patient.firstName} ${patient.middleInitialOrName}`;
 
@@ -63,6 +63,7 @@ export default class App extends PureComponent {
                     title="Business Phone Number"
                     value={patient.businessPhoneNumber}
                   />
+                  <Field title="Marital Status" value={MaritalStatus[patient.maritalStatus]} />
                 </Panel.Body>
               </Panel>
             </Col>

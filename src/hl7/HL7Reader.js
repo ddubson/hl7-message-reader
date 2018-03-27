@@ -31,6 +31,7 @@ const readPIDSegment = (segment) => {
     },
     homePhoneNumber: segmentFields[13],
     businessPhoneNumber: segmentFields[14],
+    maritalStatus: segmentFields[16],
   };
 };
 

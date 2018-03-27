@@ -50,5 +50,9 @@ describe('App', () => {
       expect(wrapper.find("Field[title='Business Phone Number']").prop('value'))
         .toEqual('(414)271-3434');
     });
+
+    it('should display marital status', () => {
+      expect(wrapper.find("Field[title='Marital Status']").prop('value')).toEqual('Single');
+    })
   });
 });

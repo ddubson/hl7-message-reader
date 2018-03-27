@@ -64,6 +64,10 @@ describe('HL7Reader', () => {
         it('should parse patient business phone number', () => {
           expect(parsedData.patient.businessPhoneNumber).toEqual('(414)271-3434');
         });
+
+        it('should parse marital status', () => {
+          expect(parsedData.patient.maritalStatus).toEqual('S');
+        })
       });
     });
   });

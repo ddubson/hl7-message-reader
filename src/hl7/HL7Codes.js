@@ -6,3 +6,21 @@ export const Race = {
   '2131-1': 'Other Race',
   '2106-3': 'White',
 };
+
+export const MaritalStatus = {
+  "N": "Annulled",
+  "C": "Common law",
+  "D": "Divorced",
+  "P": "Domestic partner",
+  "I": "Interlocutory",
+  "E": "Legally Separated",
+  "G": "Living together",
+  "M": "Married",
+  "O": "Other",
+  "R": "Registered domestic partner",
+  "A": "Separated",
+  "S": "Single",
+  "U": "Unknown",
+  "B": "Unmarried",
+  "T": "Unreported"
+}
